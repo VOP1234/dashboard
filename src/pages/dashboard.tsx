@@ -1,10 +1,10 @@
 import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { Header } from '../components/Header'
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar } from '../components/SideBar'
 
 const Chart = dynamic(() => import('react-apexcharts'), {
-  ssr: false
+  ssr: false,
 })
 
 const options = {
@@ -17,14 +17,14 @@ const options = {
     },
     foreColor: theme.colors.gray[500],
   },
-  dataLabels: {
-    enabled: false,
-  },
   grid: {
     show: false,
   },
+  dataLabels: {
+    enabled: false,
+  },
   tooltip: {
-    enabled: false
+    enabled: false,
   },
   xaxis: {
     type: 'datetime',
@@ -39,7 +39,7 @@ const options = {
       '2021-04-24T00:00:00.000Z',
       '2021-04-25T00:00:00.000Z',
       '2021-04-26T00:00:00.000Z',
-      '2021-04-27T00:00:00.000Z'
+      '2021-04-27T00:00:00.000Z',
     ]
   },
   fill: {
@@ -51,7 +51,7 @@ const options = {
       opacityTo: 0.3
     }
   }
-}
+};
 
 const series = [
   { name: 'series1', data: [31, 120, 10, 28, 61] }
@@ -60,7 +60,6 @@ const series = [
 export default function Dashboard() {
   return (
     <Flex direction="column" h='100vh'>
-
       <Header />
 
       <Flex w='100%' my='6' maxWidth={1480} mx='auto' px='6'>
@@ -68,7 +67,7 @@ export default function Dashboard() {
 
         <SimpleGrid flex='1' gap='4' minChildWidth='320px' align='flex-start'>
           <Box
-            p='8'
+            p={['6', '8']}
             bg='gray.800'
             borderRadius={8}
             pb='4'
@@ -77,11 +76,12 @@ export default function Dashboard() {
             <Chart
               options={options}
               series={series}
-              type='area' height={160}
+              type='area'
+              height={160}
             />
           </Box>
           <Box
-            p='8'
+            p={['6', '8']}
             bg='gray.800'
             borderRadius={8}
 
